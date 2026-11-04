@@ -29,7 +29,57 @@ export interface ReleaseDisplayData {
   releaseDate: string;
   commit: string;
   notes: string;
+  bullets?: string[];
   isLive: boolean;
+}
+
+function parseReleaseBody(
+  body: string | undefined,
+  defaultNote: string
+): { note: string; bullets: string[] } {
+  if (!body || !body.trim()) {
+    return { note: defaultNote, bullets: [] };
+  }
+
+  // Split lines and trim
+  const rawLines = body
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter(Boolean);
+
+  if (rawLines.length === 0) {
+    return { note: defaultNote, bullets: [] };
+  }
+
+  // Helper to strip markdown formatting
+  const strip = (text: string) =>
+    text
+      .replace(/^#{1,6}\s+/, "") // remove heading hashes like ####
+      .replace(/^[-*•]\s+/, "") // remove bullet markers
+      .replace(/\*\*([^*]+)\*\*/g, "$1") // bold
+      .replace(/\*([^*]+)\*/g, "$1") // italic
+      .replace(/__([^_]+)__/g, "$1")
+      .replace(/_([^_]+)_/g, "$1")
+      .replace(/`([^`]+)`/g, "$1") // code backticks
+      .trim();
+
+  // Extract bullets (lines starting with -, *, •)
+  const bullets = rawLines
+    .filter((l) => /^[-*•]\s+/.test(l))
+    .map(strip)
+    .filter((l) => l.length > 0 && !l.toLowerCase().startsWith("full changelog"));
+
+  // Clean all lines
+  const cleanLines = rawLines
+    .map(strip)
+    .filter((l) => l.length > 0 && !l.toLowerCase().startsWith("full changelog"));
+
+  const primaryNote = cleanLines[0] || defaultNote;
+
+  return {
+    note: primaryNote,
+    bullets,
+  };
 }
 
 export function useGitHubRelease(lang: Locale = "bn") {
@@ -42,6 +92,7 @@ export function useGitHubRelease(lang: Locale = "bn") {
     releaseDate: siteConfig.latestRelease.releaseDate,
     commit: "7a4e921",
     notes: siteConfig.latestRelease.changelog[lang]?.[0] || "",
+    bullets: siteConfig.latestRelease.changelog[lang] || [],
     isLive: false,
   });
 
@@ -77,6 +128,19 @@ export function useGitHubRelease(lang: Locale = "bn") {
             }
           );
 
+          const defaultNote =
+            lang === "bn" ? "রিলিজের বিবরণ" : "Production Release details";
+          const { note, bullets } = parseReleaseBody(rel.body, defaultNote);
+
+          // Only keep commit if it's a real hash, not branch name like "main"
+          const commitHash =
+            rel.target_commitish &&
+            rel.target_commitish !== "main" &&
+            rel.target_commitish !== "master" &&
+            rel.target_commitish.length >= 7
+              ? rel.target_commitish.substring(0, 7)
+              : "";
+
           return {
             version: rel.name || rel.tag_name,
             tag: rel.tag_name,
@@ -86,8 +150,9 @@ export function useGitHubRelease(lang: Locale = "bn") {
             apkFilename: apkAsset?.name || `DharSodh-${rel.tag_name}.apk`,
             fileSize: sizeMb,
             releaseDate: dateStr,
-            commit: rel.target_commitish ? rel.target_commitish.substring(0, 7) : "main",
-            notes: rel.body?.split("\n")?.[0] || (lang === "bn" ? "রিলিজের বিবরণ" : "Release details"),
+            commit: commitHash,
+            notes: note,
+            bullets,
             isLive: true,
           };
         });

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { siteConfig } from "@/src/config/site";
+import { getLocalizedHref } from "@/src/lib/utils";
 import type { Locale, Dictionary } from "@/src/dictionaries";
 import { Download, ExternalLink, ShieldCheck } from "lucide-react";
 
@@ -33,7 +34,7 @@ export function CtaBanner({ lang, dict }: Props) {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <a
-                href={`/${lang}#install`}
+                href={getLocalizedHref(lang, "#install")}
                 className="inline-flex items-center justify-center space-x-2.5 rounded-2xl bg-white px-7 py-3.5 text-base font-bold text-indigo-900 shadow-lg hover:bg-indigo-50 hover:scale-[1.02] active:scale-[0.98] transition-all min-h-[48px]"
               >
                 <Download className="h-5 w-5 text-indigo-700" />

@@ -45,6 +45,9 @@ export const metadata: Metadata = {
     title: `${siteConfig.name.bn} (${siteConfig.name.en})`,
     description: siteConfig.tagline.bn,
   },
+  other: {
+    google: "notranslate",
+  },
 };
 
 export default function RootLayout({
@@ -55,9 +58,13 @@ export default function RootLayout({
   return (
     <html
       lang="bn"
-      className={`${hindSiliguri.variable} ${inter.variable} scroll-smooth`}
+      translate="no"
+      className={`${hindSiliguri.variable} ${inter.variable} scroll-smooth notranslate`}
     >
-      <body className="min-h-screen bg-[#F8FAFC] text-[#0F172A] antialiased selection:bg-indigo-600 selection:text-white">
+      <head>
+        <meta name="google" content="notranslate" />
+      </head>
+      <body className="min-h-screen bg-[#F8FAFC] text-[#0F172A] antialiased selection:bg-indigo-600 selection:text-white notranslate">
         {children}
       </body>
     </html>

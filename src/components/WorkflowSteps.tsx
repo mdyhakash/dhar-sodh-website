@@ -69,7 +69,7 @@ export function WorkflowSteps({ lang, dict }: Props) {
                 {stepIcons[idx]}
                 <span className="ml-1">
                   {idx === 0
-                    ? isBn ? "গেস্ট বা ক্লাউড সিঙ্ক" : "Guest or Cloud"
+                    ? isBn ? "সহজ সাইন-ইন ও অফলাইন" : "Easy Login & Offline"
                     : idx === 1
                     ? isBn ? "তাত্ক্ষণিক এন্ট্রি" : "Instant Record"
                     : isBn ? "স্বয়ংক্রিয় হিসাব" : "Auto Balance"}

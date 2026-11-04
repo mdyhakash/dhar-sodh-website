@@ -1,6 +1,5 @@
 import React from "react";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { getDictionary, type Locale } from "@/src/dictionaries";
 import { siteConfig } from "@/src/config/site";
 import { Hero } from "@/src/components/Hero";
@@ -12,17 +11,7 @@ import { PricingReleases } from "@/src/components/PricingReleases";
 import { FaqAccordion } from "@/src/components/FaqAccordion";
 import { CtaBanner } from "@/src/components/CtaBanner";
 
-export function generateStaticParams() {
-  return [{ lang: "bn" }, { lang: "en" }];
-}
-
-interface PageProps {
-  params: Promise<{ lang: string }>;
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const resolvedParams = await params;
-  const lang = resolvedParams.lang as Locale;
+export function getHomeMetadata(lang: Locale): Metadata {
   const isBn = lang === "bn";
 
   const title = isBn
@@ -41,23 +30,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "website",
     },
     alternates: {
-      canonical: `/${lang}`,
+      canonical: isBn ? "/" : "/en",
       languages: {
-        bn: "/bn",
+        bn: "/",
         en: "/en",
       },
     },
   };
 }
 
-export default async function HomePage({ params }: PageProps) {
-  const resolvedParams = await params;
-  const lang = resolvedParams.lang as Locale;
-
-  if (lang !== "bn" && lang !== "en") {
-    notFound();
-  }
-
+export function HomeView({ lang }: { lang: Locale }) {
   const dict = getDictionary(lang);
 
   return (
@@ -73,4 +55,3 @@ export default async function HomePage({ params }: PageProps) {
     </>
   );
 }
-

@@ -37,3 +37,33 @@ export function cn(...classes: (string | boolean | undefined | null)[]): string 
   return classes.filter(Boolean).join(" ");
 }
 
+/**
+ * Returns localized URL path:
+ * Default locale is "bn", so its URLs don't have /bn prefix (e.g. "/" or "/privacy" or "/#features").
+ * English locale has "/en" prefix (e.g. "/en" or "/en/privacy" or "/en#features").
+ */
+export function getLocalizedHref(lang: "bn" | "en", path: string = ""): string {
+  if (lang === "bn") {
+    if (!path || path === "/") return "/";
+    if (path.startsWith("#")) return `/#${path.replace(/^#/, "")}`;
+    return path.startsWith("/") ? path : `/${path}`;
+  }
+  // English
+  if (!path || path === "/") return "/en";
+  if (path.startsWith("#")) return `/en#${path.replace(/^#/, "")}`;
+  return `/en${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+/**
+ * Calculates the switch target path:
+ * - If on Bengali ("/" or "/privacy"), target is "/en" or "/en/privacy"
+ * - If on English ("/en" or "/en/privacy"), target is "/" or "/privacy" (no /bn in URL)
+ */
+export function getLanguageSwitchPath(currentLang: "bn" | "en", pathname: string = ""): string {
+  const isPrivacy = pathname.includes("/privacy");
+  if (currentLang === "bn") {
+    return isPrivacy ? "/en/privacy" : "/en";
+  } else {
+    return isPrivacy ? "/privacy" : "/";
+  }
+}

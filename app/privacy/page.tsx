@@ -1,6 +1,13 @@
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { PrivacyView, getPrivacyMetadata } from "@/src/views/PrivacyView";
+import { SiteLayout } from "@/src/components/SiteLayout";
+
+export const metadata: Metadata = getPrivacyMetadata("bn");
 
 export default function RootPrivacyPage() {
-  redirect("/bn/privacy");
+  return (
+    <SiteLayout lang="bn">
+      <PrivacyView lang="bn" />
+    </SiteLayout>
+  );
 }
-

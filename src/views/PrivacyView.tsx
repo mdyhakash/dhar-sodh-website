@@ -1,9 +1,9 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { getDictionary, type Locale } from "@/src/dictionaries";
 import { siteConfig } from "@/src/config/site";
+import { getLocalizedHref } from "@/src/lib/utils";
 import {
   ShieldCheck,
   Lock,
@@ -15,22 +15,12 @@ import {
   CheckCircle,
 } from "lucide-react";
 
-export function generateStaticParams() {
-  return [{ lang: "bn" }, { lang: "en" }];
-}
-
-interface PageProps {
-  params: Promise<{ lang: string }>;
-}
-
 interface PrivacySection {
   title: string;
   content: string;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const resolvedParams = await params;
-  const lang = resolvedParams.lang as Locale;
+export function getPrivacyMetadata(lang: Locale): Metadata {
   const isBn = lang === "bn";
 
   return {
@@ -40,17 +30,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: isBn
       ? "ধারশোধ (DharSodh) এর ব্যবহারকারীর ডেটা স্টোরেজ নিয়ম এবং থার্ড-পার্টি বিজ্ঞাপন সুরক্ষার বিস্তারিত নীতিমালা।"
       : "Data protection guidelines, encrypted local records, and zero-ad principles of DharSodh.",
+    alternates: {
+      canonical: isBn ? "/privacy" : "/en/privacy",
+      languages: {
+        bn: "/privacy",
+        en: "/en/privacy",
+      },
+    },
   };
 }
 
-export default async function PrivacyPage({ params }: PageProps) {
-  const resolvedParams = await params;
-  const lang = resolvedParams.lang as Locale;
-
-  if (lang !== "bn" && lang !== "en") {
-    notFound();
-  }
-
+export function PrivacyView({ lang }: { lang: Locale }) {
   const dict = getDictionary(lang);
   const isBn = lang === "bn";
 
@@ -69,7 +59,7 @@ export default async function PrivacyPage({ params }: PageProps) {
         {/* Back Link */}
         <div className="mb-8">
           <Link
-            href={`/${lang}`}
+            href={getLocalizedHref(lang, "/")}
             className="inline-flex items-center space-x-2 text-sm font-bold text-indigo-600 hover:text-indigo-700 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -144,12 +134,12 @@ export default async function PrivacyPage({ params }: PageProps) {
             </a>
             <span className="text-slate-300">•</span>
             <a
-              href={siteConfig.github.url}
+              href={`mailto:${siteConfig.author.email}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs font-bold text-slate-700 hover:text-indigo-600"
             >
-              GitHub Security Audit
+              সহায়তা ও সাপোর্ট
             </a>
           </div>
         </div>

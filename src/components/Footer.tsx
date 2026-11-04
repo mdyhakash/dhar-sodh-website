@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/src/config/site";
+import { useGitHubRelease } from "@/src/hooks/useGitHubRelease";
+import { getLocalizedHref, getLanguageSwitchPath } from "@/src/lib/utils";
 import type { Locale, Dictionary } from "@/src/dictionaries";
 import {
   ExternalLink,
@@ -23,9 +25,9 @@ interface Props {
 export function Footer({ lang, dict }: Props) {
   const pathname = usePathname();
   const isBn = lang === "bn";
+  const { latestRelease } = useGitHubRelease(lang);
 
-  const targetLang = lang === "bn" ? "en" : "bn";
-  const targetPath = pathname ? pathname.replace(`/${lang}`, `/${targetLang}`) : `/${targetLang}`;
+  const targetPath = getLanguageSwitchPath(lang, pathname || "");
 
   return (
     <footer className="border-t border-slate-200 bg-[#0F172A] text-slate-300">
@@ -36,7 +38,7 @@ export function Footer({ lang, dict }: Props) {
           
           {/* Brand Info (2 columns) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href={`/${lang}`} className="inline-block group focus:outline-none">
+            <Link href={getLocalizedHref(lang, "/")} className="inline-block group focus:outline-none">
               <div className="inline-flex items-center rounded-md bg-white px-3.5 py-2 shadow-sm transition-transform group-hover:scale-105">
                 <Image
                   src="/dharsodh-logo.png"
@@ -90,32 +92,32 @@ export function Footer({ lang, dict }: Props) {
             </h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <a href={`/${lang}#features`} className="hover:text-indigo-400 transition-colors">
+                <a href={getLocalizedHref(lang, "#features")} className="hover:text-indigo-400 transition-colors">
                   {dict.nav.features}
                 </a>
               </li>
               <li>
-                <a href={`/${lang}#previews`} className="hover:text-indigo-400 transition-colors">
+                <a href={getLocalizedHref(lang, "#previews")} className="hover:text-indigo-400 transition-colors">
                   {dict.nav.previews}
                 </a>
               </li>
               <li>
-                <a href={`/${lang}#workflow`} className="hover:text-indigo-400 transition-colors">
+                <a href={getLocalizedHref(lang, "#workflow")} className="hover:text-indigo-400 transition-colors">
                   {dict.nav.workflow}
                 </a>
               </li>
               <li>
-                <a href={`/${lang}#install`} className="hover:text-indigo-400 transition-colors">
+                <a href={getLocalizedHref(lang, "#install")} className="hover:text-indigo-400 transition-colors">
                   {dict.nav.install}
                 </a>
               </li>
               <li>
-                <a href={`/${lang}#pricing`} className="hover:text-indigo-400 transition-colors">
+                <a href={getLocalizedHref(lang, "#pricing")} className="hover:text-indigo-400 transition-colors">
                   {dict.nav.pricing}
                 </a>
               </li>
               <li>
-                <a href={`/${lang}#faq`} className="hover:text-indigo-400 transition-colors">
+                <a href={getLocalizedHref(lang, "#faq")} className="hover:text-indigo-400 transition-colors">
                   {dict.nav.faq}
                 </a>
               </li>
@@ -130,11 +132,11 @@ export function Footer({ lang, dict }: Props) {
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
                 <a
-                  href={siteConfig.latestRelease.downloadUrl}
+                  href={latestRelease.downloadUrl}
                   className="inline-flex items-center space-x-1 hover:text-indigo-400 transition-colors"
                 >
                   <Download className="h-3.5 w-3.5 text-indigo-400 mr-1" />
-                  <span>Android APK ({siteConfig.latestRelease.version})</span>
+                  <span>Android APK ({latestRelease.tag})</span>
                 </a>
               </li>
               <li>
@@ -158,16 +160,7 @@ export function Footer({ lang, dict }: Props) {
                   GitHub Releases
                 </a>
               </li>
-              <li>
-                <a
-                  href={siteConfig.github.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  {isBn ? "সোর্স কোড অডিট" : "Source Code Audit"}
-                </a>
-              </li>
+
             </ul>
           </div>
 
@@ -179,7 +172,7 @@ export function Footer({ lang, dict }: Props) {
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
                 <Link
-                  href={`/${lang}/privacy`}
+                  href={getLocalizedHref(lang, "/privacy")}
                   className="inline-flex items-center space-x-1.5 text-indigo-400 hover:text-indigo-300 font-medium"
                 >
                   <Shield className="h-3.5 w-3.5" />

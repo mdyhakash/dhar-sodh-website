@@ -2,6 +2,7 @@
 
 import React from "react";
 import { siteConfig } from "@/src/config/site";
+import { getLocalizedHref } from "@/src/lib/utils";
 import type { Locale, Dictionary } from "@/src/dictionaries";
 import { DeviceHeroShowcase } from "./mockups/DeviceHeroShowcase";
 import {
@@ -42,7 +43,7 @@ export function Hero({ lang, dict }: Props) {
           {/* Action CTAs and Trust Badges */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <a
-              href={`/${lang}#install`}
+              href={getLocalizedHref(lang, "#install")}
               className="inline-flex items-center justify-center space-x-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-indigo-600/25 hover:scale-[1.02] active:scale-[0.98] transition-all min-h-[48px]"
             >
               <Download className="h-5 w-5" />

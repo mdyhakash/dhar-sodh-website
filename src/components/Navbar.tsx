@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/src/config/site";
+import { getLocalizedHref, getLanguageSwitchPath } from "@/src/lib/utils";
 import type { Locale, Dictionary } from "@/src/dictionaries";
 import {
   Menu,
@@ -33,16 +34,15 @@ export function Navbar({ lang, dict }: Props) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const targetLang = lang === "bn" ? "en" : "bn";
-  const targetPath = pathname ? pathname.replace(`/${lang}`, `/${targetLang}`) : `/${targetLang}`;
+  const targetPath = getLanguageSwitchPath(lang, pathname || "");
 
   const navLinks = [
-    { href: `/${lang}#features`, label: dict.nav.features },
-    { href: `/${lang}#previews`, label: dict.nav.previews },
-    { href: `/${lang}#workflow`, label: dict.nav.workflow },
-    { href: `/${lang}#install`, label: dict.nav.install },
-    { href: `/${lang}#pricing`, label: dict.nav.pricing },
-    { href: `/${lang}#faq`, label: dict.nav.faq },
+    { href: getLocalizedHref(lang, "#features"), label: dict.nav.features },
+    { href: getLocalizedHref(lang, "#previews"), label: dict.nav.previews },
+    { href: getLocalizedHref(lang, "#workflow"), label: dict.nav.workflow },
+    { href: getLocalizedHref(lang, "#install"), label: dict.nav.install },
+    { href: getLocalizedHref(lang, "#pricing"), label: dict.nav.pricing },
+    { href: getLocalizedHref(lang, "#faq"), label: dict.nav.faq },
   ];
 
   return (
@@ -58,7 +58,7 @@ export function Navbar({ lang, dict }: Props) {
           
           {/* Brand Logo (Exact image for both bn and en) */}
           <Link
-            href={`/${lang}`}
+            href={getLocalizedHref(lang, "/")}
             className="flex items-center shrink-0 group focus:outline-none"
           >
             <div className="flex items-center">
@@ -113,7 +113,7 @@ export function Navbar({ lang, dict }: Props) {
 
             {/* Brand Primary Color Download APK Button */}
             <a
-              href={`/${lang}#install`}
+              href={getLocalizedHref(lang, "#install")}
               className="inline-flex items-center space-x-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 px-3 py-1 text-xs font-bold text-white shadow-xs transition-all whitespace-nowrap"
             >
               <Download className="h-3.5 w-3.5" />
@@ -173,7 +173,7 @@ export function Navbar({ lang, dict }: Props) {
             </a>
 
             <a
-              href={`/${lang}#install`}
+              href={getLocalizedHref(lang, "#install")}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-center space-x-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 py-2 text-xs font-bold text-white shadow-xs"
             >

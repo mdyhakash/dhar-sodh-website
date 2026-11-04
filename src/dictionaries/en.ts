@@ -7,13 +7,13 @@ export const en = {
     githubRepo: "GitHub Repository",
     starOnGithub: "Star on GitHub",
     exploreFeatures: "Explore Features",
-    liveRelease: "v1.4.2 Live Release",
-    freeForever: "100% Free & Open Source",
+    liveRelease: "v1.0.0 Live Release",
+    freeForever: "100% Free Forever",
     offlineReady: "Offline Caching Ready",
     verifiedSecurity: "Encrypted & Secure",
     developedBy: "Developed by",
     developerName: "Md Yasin Hossain Akash",
-    copyright: "All rights reserved. DharSodh is an open, private financial recordkeeping platform.",
+    copyright: "All rights reserved. DharSodh is a modern, private financial recordkeeping platform.",
     switchLanguage: "বাংলায় পড়ুন",
     langCode: "bn",
     currentLang: "en",
@@ -30,7 +30,7 @@ export const en = {
     faq: "FAQ",
   },
   hero: {
-    badge: "Version 1.4.2 Live • 100% Open-Source & Private",
+    badge: "Version 1.0.0 Live • 100% Free & Private",
     titlePrefix: "Track loans, debts, and credits",
     titleHighlight: "Master Every Penny",
     titleSuffix: "with Zero Guesswork",
@@ -43,7 +43,7 @@ export const en = {
       users: "15,000+ Active Users",
       volume: "৳ 250M+ Managed Debts",
       rating: "4.9 / 5.0 Star Rating",
-      openSource: "100% Open Source",
+      openSource: "100% Free Forever",
     },
     mockupBadgeWeb: "DharSodh Cloud Dashboard",
     mockupBadgeMobile: "Android Native App",
@@ -95,7 +95,7 @@ export const en = {
       {
         id: "history",
         title: "Comprehensive Audit Logs & Receipts",
-        desc: "Inspect full lifecycle chronologies including timestamps, transaction notes, partial installment adjustments, and downloadable PDF reports.",
+        desc: "Inspect full lifecycle chronologies including timestamps, transaction notes, partial installment adjustments.",
         badge: "Transparent Records",
       },
       {
@@ -125,7 +125,7 @@ export const en = {
     tabWeb: "Web Dashboard View",
     tabMobile: "Mobile Ledger View",
     webFeature1: "Multi-parameter filtering & graphical trend graphs",
-    webFeature2: "Export multi-column records to CSV & printable PDF",
+    webFeature2: "Real-time balance breakdown & transaction summaries",
     webFeature3: "One-click complete cloud snapshot & backup sync",
     mobileFeature1: "One-handed rapid transaction entry on the move",
     mobileFeature2: "Direct contact book integration for borrowers",
@@ -138,8 +138,8 @@ export const en = {
     steps: [
       {
         step: "01",
-        title: "Create Account or Use Guest Mode",
-        desc: "Sign up seamlessly via email or mobile OTP, or jump straight in with pure on-device offline storage without registering.",
+        title: "Quick Account Setup & Login",
+        desc: "Sign up or log in easily on the Web or Android app. With our mobile app's built-in offline feature, manage and record your transactions anytime without an internet connection.",
       },
       {
         step: "02",
@@ -156,11 +156,11 @@ export const en = {
   install: {
     sectionTag: "Procedural Installation",
     title: "Install DharSodh on Android",
-    subtitle: "Bypass proprietary app store restrictions and install our verified, lightweight open-source release package directly.",
+    subtitle: "Bypass proprietary app store restrictions and install our verified, lightweight official release package directly.",
     downloadButton: "Download APK File",
     checksumLabel: "SHA-256 Verified Hash",
     packageInfo: {
-      version: "Version: v1.4.2 (Stable)",
+      version: "Version: v1.0.0 (Stable)",
       size: "File Size: 14.8 MB",
       minAndroid: "Min Android: 7.0+ (Nougat)",
       architecture: "Architecture: Universal APK",
@@ -169,7 +169,7 @@ export const en = {
       {
         num: "1",
         title: "Grab the Release APK",
-        desc: "Click the download button above to retrieve the official DharSodh-v1.4.2-release.apk binary to your downloads folder.",
+        desc: "Click the download button above to retrieve the official DharSodh-v1.0.0-release.apk binary to your downloads folder.",
       },
       {
         num: "2",
@@ -187,7 +187,7 @@ export const en = {
   },
   pricing: {
     sectionTag: "Pricing & Transparency",
-    title: "Free Forever, Community Driven",
+    title: "Free Forever, No Hidden Costs",
     subtitle: "We believe keeping personal finances transparent and debt-free should never come with a subscription paywall.",
     tierName: "Community Free Edition",
     tierPrice: "৳ 0",
@@ -199,9 +199,9 @@ export const en = {
       "Unlimited contact profiles",
       "Full offline storage and backup",
       "Partial installment & repayment tracking",
-      "CSV & spreadsheet report export",
+      "Real-time cloud sync & auto recovery",
       "Zero third-party advertising or trackers",
-      "100% open-source GitHub codebase",
+      "100% secure & encrypted data protection",
     ],
     releasesHeader: "Recent Release Ledger (Changelog)",
     viewAllReleases: "View All Releases on GitHub",
@@ -209,11 +209,11 @@ export const en = {
   faq: {
     sectionTag: "Frequently Asked Questions",
     title: "Got Questions? We Have Answers.",
-    subtitle: "Everything you need to know about safety, synchronization, offline capabilities, and open-source ethics.",
+    subtitle: "Everything you need to know about safety, synchronization, offline capabilities, and data security and privacy.",
     items: [
       {
         q: "Is DharSodh truly free or will there be surprise fees?",
-        a: "DharSodh is 100% free and open-source. There are no hidden paywalls, subscription tiers, or feature locks. It is built as a public service utility for honest debt tracking.",
+        a: "DharSodh is 100% free to use. There are no hidden paywalls, subscription tiers, or feature locks. It is built as a reliable utility for honest debt tracking.",
       },
       {
         q: "How secure is my financial transaction data?",
@@ -233,11 +233,11 @@ export const en = {
       },
       {
         q: "What happens if I lose my phone? Can I recover my data?",
-        a: "If you logged in with an account, your data is securely mirrored in the cloud and restores instantly when you log into a new device. You can also export local JSON/CSV backups anytime.",
+        a: "If you logged in with an account, your data is securely mirrored in the cloud and restores instantly when you log into a new device. All your records remain backed up securely.",
       },
       {
-        q: "How can I contribute or report bugs?",
-        a: "Our codebase is publicly hosted on GitHub. You can star the repository, open issue tickets, suggest new features, or submit pull requests directly to help improve the project.",
+        q: "Which platforms does DharSodh support?",
+        a: "DharSodh is fully accessible via our modern Web Dashboard on any desktop or mobile browser, and as a native Android APK for smartphones.",
       },
     ],
   },
