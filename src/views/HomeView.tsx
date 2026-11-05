@@ -4,7 +4,7 @@ import { getDictionary, type Locale } from "@/src/dictionaries";
 import { siteConfig } from "@/src/config/site";
 import { Hero } from "@/src/components/Hero";
 import { FeaturesMatrix } from "@/src/components/FeaturesMatrix";
-import { ComponentPreviews } from "@/src/components/ComponentPreviews";
+// import { ComponentPreviews } from "@/src/components/ComponentPreviews";
 import { WorkflowSteps } from "@/src/components/WorkflowSteps";
 import { InstallGuide } from "@/src/components/InstallGuide";
 import { PricingReleases } from "@/src/components/PricingReleases";
@@ -46,7 +46,8 @@ export function HomeView({ lang }: { lang: Locale }) {
     <>
       <Hero lang={lang} dict={dict} />
       <FeaturesMatrix lang={lang} dict={dict} />
-      <ComponentPreviews lang={lang} dict={dict} />
+      {/* Web & Mobile App View Section (Temporarily commented out in favor of Video Walkthrough) */}
+      {/* <ComponentPreviews lang={lang} dict={dict} /> */}
       <WorkflowSteps lang={lang} dict={dict} />
       <InstallGuide lang={lang} dict={dict} />
       <PricingReleases lang={lang} dict={dict} />

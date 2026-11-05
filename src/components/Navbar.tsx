@@ -38,7 +38,7 @@ export function Navbar({ lang, dict }: Props) {
 
   const navLinks = [
     { href: getLocalizedHref(lang, "#features"), label: dict.nav.features },
-    { href: getLocalizedHref(lang, "#previews"), label: dict.nav.previews },
+    // { href: getLocalizedHref(lang, "#previews"), label: dict.nav.previews },
     { href: getLocalizedHref(lang, "#workflow"), label: dict.nav.workflow },
     { href: getLocalizedHref(lang, "#install"), label: dict.nav.install },
     { href: getLocalizedHref(lang, "#pricing"), label: dict.nav.pricing },

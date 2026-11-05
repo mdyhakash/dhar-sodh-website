@@ -24,7 +24,7 @@ export const en = {
   nav: {
     features: "Features",
     previews: "Previews",
-    workflow: "Workflow",
+    workflow: "Workflow & Demo",
     install: "Install",
     pricing: "Pricing",
     faq: "FAQ",
@@ -132,9 +132,13 @@ export const en = {
     mobileFeature3: "On-device biometric fingerprint security lock",
   },
   workflow: {
-    sectionTag: "Simple 3 Steps",
+    sectionTag: "Simple 3 Steps & Video Demo",
     title: "How DharSodh Works",
-    subtitle: "Start organizing your lending books in under two minutes with zero steep learning curve.",
+    subtitle: "Watch how you can organize and manage your debt ledger in 3 simple steps with our interactive product video.",
+    videoBadge: "Live Video Walkthrough",
+    playButtonText: "Play Demo with Audio",
+    videoSubtitle: "Complete video walkthrough with narration",
+    pauseTip: "Auto-pauses when scrolling away",
     steps: [
       {
         step: "01",

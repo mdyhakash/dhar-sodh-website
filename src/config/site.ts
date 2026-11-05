@@ -46,6 +46,11 @@ export interface SiteConfig {
     appRating: string;
     openSource: string;
   };
+  demoVideo: {
+    url: string;
+    poster: string;
+    duration: { bn: string; en: string };
+  };
 }
 
 export const siteConfig: SiteConfig = {
@@ -105,5 +110,15 @@ export const siteConfig: SiteConfig = {
     totalTransactions: { bn: "৳ ২৫+ কোটি হিসাব ট্র্যাকিং", en: "৳ 250M+ Managed Debts" },
     appRating: "4.9 / 5.0",
     openSource: "100% Free to Use",
+  },
+  demoVideo: {
+    // অফিশিয়াল ক্লাউডিনারি (Cloudinary) ভিডিও লিঙ্ক
+    url: "https://res.cloudinary.com/mfu13e9y/video/upload/v1793857829/dharsodhv1.0.0_ws9yua.mp4",
+    // থাম্বনেইল / পোস্টার ছবি (Cloudinary অটো অপ্টিমাইজড ফ্রেম)
+    poster: "https://res.cloudinary.com/mfu13e9y/video/upload/so_1,q_auto,f_jpg/v1793857829/dharsodhv1.0.0_ws9yua.jpg",
+    duration: {
+      bn: "২:১৫ মিনিট",
+      en: "2:15 min",
+    },
   },
 };
